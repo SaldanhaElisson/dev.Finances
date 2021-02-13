@@ -11,35 +11,46 @@
 
 <body>
     <header>
-        <h1 id="logo">dev.finace$</h1>
+        <img src="assets/logo.svg" alt="">
     </header>
 
     <main class="conteiner">
 
         <section id="balance">
-            <h2>Balanço</h2>
+            <h2 class="sr-only">Balanço</h2>
             <div class="card">
-                <h3>Entradas</h3>
+                <h3>
+                    <span>Entradas</span>
+                    <img src="assets/income.svg" alt="entrada">
+                </h3>
                 <p>R$5.000,00</p>
             </div>
             <div class="card">
-                <h3>Saídas</h3>
+                <h3>
+                    <span>saídas</span>
+                    <img src="assets/expense.svg" alt="saídas">
+                </h3></h3>
                 <p>R$2.000,00</p>
             </div>
             <div class="card total">
-                <h3>Total</h3>
+                <h3>
+                    <span>Total</span>
+                    <img src="assets/total.svg" alt="total">
+                    </h3>
                 <p>R$3.000,00</p>
             </div>
         </section>
 
         <section id="Transaction">
-            <h2>Transição</h2>
+            <h2 class="sr-only">Transição</h2>
+            <a href="#" class="button new">+Nova Transição</a>
             <table id="data-base">
                 <thead>
                     <tr>
-                        <td>Descrição</td>
-                        <td>Valor</td>
-                        <td>Data</td>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,18 +58,21 @@
                         <td class="descriptions">Luz</td>
                         <td class="expense">-R$500,00</td>
                         <td> 23/01/2021</td>
+                        <td><img src="assets/minus.svg" alt="minus"></td>
                     </tr>
 
                     <tr>
                         <td class="descriptions">Criação de Website</td>
                         <td class="income">R$5.000,00</td>
                         <td class="data">23/01/2021</td>
+                        <td><img src="assets/minus.svg" alt=" minus"></td>
                     </tr>
 
                     <tr>
                         <td class="descriptions">Internet</td>
                         <td class="expense">-R$200,00 </td>
                         <td class="data"> 23/01/2021</td>
+                        <td><img src="assets/minus.svg" alt=" minus"></td>
                     </tr>
                 </tbody>
             </table>
