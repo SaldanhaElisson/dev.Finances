@@ -1,9 +1,7 @@
 {
-	"folders": [
-		{
-			"name": "Discover",
-			"path": "."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }
