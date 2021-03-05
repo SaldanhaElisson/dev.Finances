@@ -15,19 +15,19 @@ const modal = {
 
 
 const transactions = [{
-    id: 1,
+  
     description: 'luz',
     amount: -50000,
     date:'23/01/2021'
 },
 {
-    id: 2,
+    
     description: 'criação de website',
     amount: 50000,
     date: '23/01/2021'
 },
 {
-    id: 3,
+   
     description: 'internet',
     amount: -2000,
     date:'23/01/2021'
@@ -39,7 +39,13 @@ const transaction = {
     add(Transaction){
         transaction.all.push(Transaction)
 
-        console.log(transaction.all)
+        App.reload()
+    },
+
+    remove(index) {
+        transaction.all.splice(index, 1)
+
+        App.reload()
     },
 
     income() {
@@ -133,15 +139,33 @@ const Utils = { //forma os numeros para dinheiro
 }
 /* ==============================Executar a função para cada informação no bojeto transactions=========== */
 
+const App = {
+    init(){
 
-DOM.updateBalance()
 
+        transaction.all.forEach(transaction =>{
+            DOM.addTransaction(transaction)
+        })
+
+        DOM.updateBalance()
+
+    },
+    reload(){
+        DOM.clearTransanctions()
+        App.init()
+    }
+}
+
+App.init()
 
 transaction.add({
-    id:1,
+  
     description:'alo',
     amount:200,
-    date: '23/01/2021'
+    date: 30/02/2021
+
 })
+
+transaction.remove(1)
 
 
