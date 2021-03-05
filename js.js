@@ -13,15 +13,6 @@ const modal = {
     }
 }
 
-//preciso adiciona dado na transacions
-//pegar os dados do modal
-
-
- 
-
-//passar os dados para a const transactions utilizando a fuction contrusctor
-
-
 
 const transactions = [{
     id: 1,
@@ -41,20 +32,50 @@ const transactions = [{
     amount: -2000,
     date:'23/01/2021'
 }]
-
+/* ==============================Soma e dimunio as transactions =========== */
 const transaction = {
+    all: transactions, 
+
+    add(Transaction){
+        transaction.all.push(Transaction)
+
+        console.log(transaction.all)
+    },
+
     income() {
-        //numero da entradas
+        let income = 0;
+        //pegar odas as transacoes
+        //para cada trasancao
+        transaction.all.forEach((transaction) => {
+            if (transaction.amount > 0){
+                //somar a um variavel e retorna a variavel
+                income += transaction.amount;
+            }
+
+        })
+        
+        return income;
     },
+
     amount() {
-        // numeros de sáidas
+        let expense = 0;
+        transaction.all.forEach((transaction) => {
+            if (transaction.amount < 0){
+                expense +=  transaction.amount;
+            }
+
+        })
+        
+        return expense;
+       
     },
+
     total() {
-        // total income - amount
+        return transaction.income() + transaction.amount();
     }
 
 }
-
+/* ==============================Coloca as transactions no html de forma dinâmica =========== */
 const DOM = {
     transanctionContainer: document.querySelector('#data-base tbody'),
 
@@ -69,17 +90,58 @@ const DOM = {
     },
 
     innerHTMLTransaction(transaction) {
+        const CSSclass= transaction.amount > 0 ?"income":"expense"
+
+        const amount = Utils.formtCurrency(transaction.amount)
+
         const html = ` 
         <td class="descriptions">${transaction.description}</td>
-        <td class="expense">${transaction.amount}</td>
+        <td class="${CSSclass}">${amount}</td>
         <td>${transaction.date} </td>
         <td><img src="assets/minus.svg" alt="minus"></td>
         `
         return html
+    },
+
+    updateBalance(){
+        document.getElementById('incomesDisplay').innerHTML =Utils.formtCurrency(transaction.income())
+        document.getElementById('expenseDisplay').innerHTML = Utils.formtCurrency(transaction.amount())
+        document.getElementById('totalDisplay').innerHTML = Utils.formtCurrency(transaction.total())
+    },
+
+    clearTransanctions(){
+        DOM.transanctionContainer.innerHTML=""
     }
-
+    
 }
+/* ==============================Formato os numero para dinheiro brasileiro =========== */
+const Utils = { //forma os numeros para dinheiro
+    formtCurrency(value){
+        const signal = Number(value) < 0 ? "-" : ""
 
-transactions.forEach((transaction)=>{
-    DOM.addTransaction(transaction)
-}) //fazer uma função para cada elemento da array
+        value =String(value).replace(/\D/g, "") // tirar tudo que não for número
+
+        value = Number(value) / 100
+        
+        value = value.toLocaleString("pt-br", {
+            style:"currency",
+            currency:"BRL"
+        }) // mudar para moeda brasileira colocando o $ no value
+
+        return signal+value
+    }
+}
+/* ==============================Executar a função para cada informação no bojeto transactions=========== */
+
+
+DOM.updateBalance()
+
+
+transaction.add({
+    id:1,
+    description:'alo',
+    amount:200,
+    date: '23/01/2021'
+})
+
+
