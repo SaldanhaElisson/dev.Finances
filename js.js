@@ -14,27 +14,27 @@ const modal = {
 }
 
 
-const transactions = [{
-  
-    description: 'luz',
-    amount: -50000,
-    date:'23/01/2021'
-},
-{
-    
-    description: 'criação de website',
-    amount: 50000,
-    date: '23/01/2021'
-},
-{
-   
-    description: 'internet',
-    amount: -2000,
-    date:'23/01/2021'
-}]
+
 /* ==============================Soma e dimunio as transactions =========== */
 const transaction = {
-    all: transactions, 
+    all: [{
+  
+        description: 'luz',
+        amount: -50000,
+        date:'23/01/2021'
+    },
+    {
+        
+        description: 'criação de website',
+        amount: 50000,
+        date: '23/01/2021'
+    },
+    {
+       
+        description: 'internet',
+        amount: -2000,
+        date:'23/01/2021'
+    }], 
 
     add(Transaction){
         transaction.all.push(Transaction)
@@ -139,6 +139,55 @@ const Utils = { //forma os numeros para dinheiro
 }
 /* ==============================Executar a função para cada informação no bojeto transactions=========== */
 
+const Form = {
+    description: document.querySelector('input#description'),
+    amount: document.querySelector('input#amount'),
+    date: document.querySelector('input#data'),
+
+    getValues(){
+        return {
+            description: Form.description.value,
+            amount: Form.amount.value,
+            date: Form.date.value
+        }
+    },
+    validateFiel(){
+
+        const { description, amount, date } = Form.getValues()
+
+       
+        if(description.trim() ==="" || amount.trim() ==="" || date.trim() ==="") {
+            throw new Error("Por favor, preencha todos os campos")
+        }
+
+
+
+
+        //trim serve para fazer uma limpeza 
+        
+    },
+    submit(event){
+        event.preventDefault();
+
+
+
+        try {
+            
+        } catch (error) {
+            
+        }
+
+        //verificar se todas as informações foram preenchidas
+        Form.validateFiel();
+        //formatar os dados para salvarr
+        
+        //salvar
+        //apagar os dados do formularios
+        //modal feched
+        //atualizar a aplicação
+    }
+}
+
 const App = {
     init(){
 
@@ -166,6 +215,6 @@ transaction.add({
 
 })
 
-transaction.remove(1)
+
 
 
